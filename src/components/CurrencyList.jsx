@@ -6,7 +6,7 @@ import ReactPaginate from 'react-paginate';
 const CurrencyList = () => {
   const [coins, setCoins] = useState([]);
   const [search, setSearch] = useState('');
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
     axios
@@ -37,7 +37,7 @@ const CurrencyList = () => {
     coin.name.toLowerCase().includes(search.toLocaleLowerCase())
   );
 
-  const pageCount = Math.ceil((filteredCoins?.length / 10).toFixed(0));
+  const pageCount = Math.ceil((coins?.length / 10).toFixed(0));
 
   const changePage = ({ selected }) => {
     setPageNumber(selected);
@@ -59,10 +59,9 @@ const CurrencyList = () => {
           />
         </form>
       </div>
-
       {filteredCoins &&
         filteredCoins
-          .slice((pageNumber - 1) * 10, (pageNumber - 1) * 10 + 10)
+          .slice((pageNumber - 0) * 10, (pageNumber - 0) * 10 + 10)
           .map((coin) => {
             return (
               <Coin
